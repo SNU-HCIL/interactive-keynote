@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { Router, Route } from "svelte-routing";
-  import Slideshow from "./Slideshow.svelte";
+  import Slideshow from "./components/Slideshow.svelte";
 
   export let url: string = ''
 
