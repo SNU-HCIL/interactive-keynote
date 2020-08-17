@@ -3,9 +3,11 @@
   import jQuery from "jquery"
   export let sourceUrl: string;
 
+  let container: HTMLElement;
+
 	onMount(() => {
-    (window as any).remark.create({ sourceUrl })
-    setTimeout(() => {
+    (window as any).remark.create({ sourceUrl, container }, () => {
+      // callback after creating slides
       jQuery('code.python').each(function(index: number) {
         const node = jQuery(this)
         node.after(`
@@ -18,8 +20,19 @@
             </a>
           </div>
         `)
-        
       })
-    }, 2000)
+    })
   })
 </script>
+
+<div class="container" bind:this={container} />
+
+<style>
+  :global(body) {
+    padding: 0px;
+  }
+  .container {
+    width: 100%;
+    height: 100%;
+  }
+</style>
