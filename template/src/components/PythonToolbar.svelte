@@ -2,7 +2,7 @@
   export let code: string
 </script>
 
-<div style="display: flex">
+<div style="display: block">
   <a target="_blank"
     href="https://brython.info/tests/editor.html?lang=en&code={encodeURIComponent(code)}"
   >
@@ -14,3 +14,16 @@
     <button>Visualize</button>
   </a>
 </div>
+
+<style>
+  a {
+    float: right;
+  }
+
+  button {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-family: 'Quattrocento Sans';
+  }
+
+</style>

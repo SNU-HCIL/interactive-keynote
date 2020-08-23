@@ -19,6 +19,14 @@
           code: node.children().toArray().map(codeLineDiv => codeLineDiv.innerText).join('\n')
         }
       }).toArray()
+
+      const slides = jQuery('.remark-slide-content')
+      console.log(slides);
+
+      let imgStr;
+
+      slides.append("<img class='logo' width='100px' style='position:absolute; left: 729px; top: 34px;' src='img/hcilogo_snu.png'/>");
+
     })
   })
 
