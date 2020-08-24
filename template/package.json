@@ -24,8 +24,10 @@
   },
   "dependencies": {
     "@types/jquery": "^3.5.1",
+    "bootstrap": "^4.5.2",
     "jquery": "^3.5.1",
     "sirv-cli": "^1.0.0",
-    "svelte-routing": "^1.4.2"
+    "svelte-routing": "^1.4.2",
+    "sveltestrap": "^3.7.3"
   }
 }

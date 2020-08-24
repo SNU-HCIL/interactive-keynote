@@ -9,3 +9,5 @@ export interface CodeBlockInfo {
 }
 
 export const codeBlockInfos: Writable<CodeBlockInfo[]> = writable([])
+
+export const codeRunLock: Writable<number> = writable(0)
