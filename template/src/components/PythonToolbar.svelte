@@ -1,11 +1,22 @@
 <script lang="ts">
-  export let code: string;
   import type brython from "brython";
   import { onMount } from "svelte";
   import { codeRunLock } from "../store/code-block";
+  import {
+    Row,
+    Col,
+    Input,
+    Button,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+  } from "sveltestrap";
 
+  export let code: string;
   let editCode: string = code;
   let showEdit: boolean = false;
+  const toggle = () => (showEdit = !showEdit);
   let result: string[] = [];
   let currentTime: number = Date.now();
 
@@ -19,8 +30,9 @@
   });
 
   async function runPython(src) {
+    const timeout = 2000;
     // https://groups.google.com/g/brython/c/xLv55qq-L1s
-    $codeRunLock = Date.now() + 2000;
+    $codeRunLock = Date.now() + timeout;
     result = [];
     const console_log = console.log;
     // dynamically create an invisible DIV with type="text/python3"
@@ -31,10 +43,10 @@
     pyScript.textContent = src;
     document.body.appendChild(pyScript);
     // run brython(), searching Python code in DIV tags
-    console.log = (x) => (result = [...result, x]);
+    console.log = (x) => (result = [...result, x.trim()]);
     brython({ debug: 1 });
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log = console_log;
+    await new Promise((resolve) => setTimeout(resolve, timeout));
+          // console.log = console_log;
     // clean up
     document.body.removeChild(pyScript);
   }
@@ -52,31 +64,21 @@
     font-family: "Quattrocento Sans";
   }
 
-  .run {
-    width: 100%;
+  .code-result {
+    white-space: pre-wrap;
     height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 10px;
-    background-color: white;
-    margin: 10px;
-    z-index: 999;
-  }
-
-  .code-box {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    row-gap: 5px;
+    max-height: 465px;
+    overflow: scroll;
+    padding: 10px;
   }
 </style>
 
 <div class="toolbar">
   <button
     on:click={() => {
-      showEdit = !showEdit;
+      showEdit = true;
+      editCode = code
+      runPython(editCode);
     }}
     disabled={currentTime < $codeRunLock}>
     Run Code
@@ -88,18 +90,39 @@
   </a>
 </div>
 
-{#if showEdit}
-  <div class="run">
-    <div class="code-box">
-      <textarea bind:value={editCode} />
-      <button
+<div
+  on:keydown|stopPropagation={() => {}}
+  on:keypress|stopPropagation={() => {}}
+  on:mousewheel|stopPropagation={() => {}}
+>
+  <Modal 
+    isOpen={showEdit} {toggle} transitionOptions={{}} size="lg">
+    <ModalHeader {toggle}>
+      <span>Code Editor</span>
+      <span class="text-muted ml-3"><small>powered by <a class="text-color-secondary" href="https://brython.info/">Brython</a></small></span>
+    </ModalHeader>
+    <ModalBody>
+      <Row style={`height: 450px`}>
+        <Col xs="6">
+          <textarea
+            style="width: 100%; height: 100%"
+            bind:value={editCode} />
+        </Col>
+        <Col xs="6">
+          <p class="code-result bg-light">{result.join('\n')}</p>
+        </Col>
+      </Row>
+    </ModalBody>
+    <ModalFooter>
+      <Button
+        color="primary"
         disabled={currentTime < $codeRunLock}
         on:click={() => {
           runPython(editCode);
         }}>
         Run
-      </button>
-    </div>
-    <div>{result.join('\n')}</div>
-  </div>
-{/if}
+      </Button>
+      <Button color="secondary" on:click={toggle}>Cancel</Button>
+    </ModalFooter>
+  </Modal>
+</div>
