@@ -29,12 +29,13 @@ npm run build
 
 ### Manual
 
-Currently follows the funtionalities provided by [grab/remark wiki](https://github.com/gnab/remark/wiki). 
+Currently follows the functionalities provided by [grab/remark wiki](https://github.com/gnab/remark/wiki). 
 This document only explains basic features, which can be used without shortage while making your presentation.
 
 #### Slide separators
 
-A line containing *three dashes* represents a slide separator. To make an incremental slides, where succeeding slides inherits elements from previous one, use *two dashes*.
+
+A line containing *three dashes* represents a slide separator. To make incremental slides, where succeeding slides inherits elements from the previous one, use *two dashes*.
 
 ```markdown
 
@@ -72,7 +73,7 @@ layout: true
 <!-- both Slide 1 & 2 will contain "Template subtitle" -->
 ```
 
-To designate specific slides as template, simply use `template` identifier.
+To designate specific slides as a template, simply use the `template` identifier.
 
 ```markdown
 name: template-slide
@@ -135,7 +136,7 @@ class: middle, center
 
 #### Run / Visualize Python Code
 
-Just insert python code as usual...this will automatically generate run / visualize functionalities.
+Just insert python code as usual... the program will automatically generate run / visualize functionalities.
 
 <pre>
 #### Python Code
@@ -165,7 +166,7 @@ right-column content
 ]
 ```
 
-In each row, the sum of column # should be 12. For example, you can make three columns with 2:1:1 ratio like this:
+In each row, the sum of column # should be 12. For example, you can make three columns with 2:1:1 ratio as follows:
 
 ```markdown
 .row[
