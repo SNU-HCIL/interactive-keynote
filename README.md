@@ -170,13 +170,13 @@ In each row, the sum of column # should be 12. For example, you can make three c
 
 ```markdown
 .row[
-.col-4[
+.col-6[
 first-column content
 ]
-.col-4[
+.col-3[
 second-column content
 ]
-.col-4[
+.col-3[
 third-column content
 ]
 ]
