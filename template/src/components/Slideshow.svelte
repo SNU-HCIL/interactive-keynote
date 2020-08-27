@@ -25,7 +25,7 @@
 
       let imgStr;
 
-      slides.append("<img class='logo' width='100px' style='position:absolute; left: 729px; top: 34px;' src='img/hcilogo_snu.png'/>");
+      slides.append("<img class='logo' width='100px' style='position:absolute; right: 15px; top: 15px;' src='img/hcilogo_snu.png'/>");
 
     })
   })
