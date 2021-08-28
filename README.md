@@ -194,6 +194,18 @@ A (very crude) way of printing the slides is:
 
 ---
 
+### Exproting Markdown to Notebook (.ipynb)
+
+Run python script:
+
+`python3 md2ipynb.py -i input_path.md -o output_path.ipynb` 
+
+`-i` and `-o` argument is used to designate the path of input / output file, respectively. If output path is not determined, `input.md` will be converted into `output_input.ipynb`.
+
+Error report for md2ipynb: Contact [hj@hcil.snu.ac.kr]
+
+---
+
 Special Thanks to [sveltejs/svelte](https://github.com/sveltejs/svelte), [grab/remark](https://github.com/gnab/remark/wiki)
 
 
