@@ -39,7 +39,7 @@ for line in lines:
         cell.append("\n")
         continue
     
-    if ('```python' in line):
+    if ('```python' in line and '```python3' not in line):
         if len(cell) > 0:
             cells.append({
                 "source": copy.deepcopy(cell),
