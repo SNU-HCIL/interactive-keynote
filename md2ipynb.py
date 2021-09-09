@@ -33,13 +33,13 @@ for line in lines:
     if ((line[:7] == "class :") or (line[:8] == "layout :") or
         (line[:6] == "name :")   or (line[:10] == "template :")):
         continue
-    if (line[:4] == ".col") or (line[:4] == ".row"):
+    if (line[:4] == ".col") or (line[:4] == ".row") or (line[:3] == ".mb"):
         continue
     if (line == "]\n"):
         cell.append("\n")
         continue
     
-    if ('```python' in line) or ('```python3' in line):
+    if ('```python' in line):
         if len(cell) > 0:
             cells.append({
                 "source": copy.deepcopy(cell),
